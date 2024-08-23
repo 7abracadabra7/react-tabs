@@ -7,7 +7,7 @@ const Tabs = () => {
       <div className="tabs-container">
         <ul>
           {tabsData.map((item, index) => (
-            <li key={index}>{item.title}</li>
+            <li className={index === 0 ? "active" : ""} key={index}>{item.title}</li>
           ))}
         </ul>
         <div className="content">
