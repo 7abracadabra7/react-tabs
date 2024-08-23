@@ -3,10 +3,12 @@ import { useState } from "react";
 import "./Tabs.css";
 
 const Tabs = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  let tabIndex = localStorage.getItem("index") || 0;
+  const [activeTab, setActiveTab] = useState(tabIndex);
 
   const clickHandler = (id) => {
     setActiveTab(id);
+    localStorage.setItem("index", id);
   };
   return (
     <>
@@ -14,7 +16,7 @@ const Tabs = () => {
         <ul>
           {tabsData.map((item, index) => (
             <li
-              className={index === activeTab ? "active" : ""}
+              className={index == activeTab ? "active" : ""}
               key={index}
               onClick={() => clickHandler(index)}
             >
@@ -26,7 +28,7 @@ const Tabs = () => {
           {tabsData.map((item, index) => (
             <div
               key={index}
-              className={`desc ${index === activeTab ? "active" : ""}`}
+              className={`desc ${index == activeTab ? "active" : ""}`}
             >
               {item.description}
             </div>
